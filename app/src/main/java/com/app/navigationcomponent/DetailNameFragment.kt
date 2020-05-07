@@ -5,50 +5,49 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
-import com.app.navigationcomponent.databinding.FragmentMain1Binding
+import com.app.navigationcomponent.databinding.FragmentDetailNameBinding
+
 
 /**
  * A simple [Fragment] subclass.
  */
-class Main1Fragment : Fragment() {
+class DetailNameFragment : Fragment() {
 
-
-    private var _binding: FragmentMain1Binding? = null
-    // This property is only valid between onCreateView and
-    // onDestroyView.
+    private var _binding: FragmentDetailNameBinding? = null
     private val binding get() = _binding!!
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentMain1Binding.inflate(inflater, container, false)
-        val view = binding.root
-        // Inflate the layout for this fragment
-        return view
+        _binding = FragmentDetailNameBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initializeViews()
+        initializeView()
     }
 
-    private fun initializeViews(){
-        binding.buttonNext.setOnClickListener {
-            val action = Main1FragmentDirections.actionMain1FragmentToMain2Fragment()
-            findNavController().navigate(action)
-        }
+    private fun initializeView(){
         binding.textActivityName.text = activity!!::class.java.simpleName
         binding.textFragmentName.text = this::class.java.simpleName
+
+        binding.buttonDone.setOnClickListener {
+            if (!findNavController().popBackStack()){
+                activity?.finish()
+            }
+        }
+
+        binding.headerMain.textTitle.text = "Name Title"
+        binding.headerMain.textSubtitle.text = "Name SubTitle"
     }
 
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
     }
+
 
 }

@@ -1,30 +1,29 @@
 package com.app.navigationcomponent
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.app.navigationcomponent.databinding.FragmentMain3Binding
+import androidx.navigation.fragment.navArgs
+import com.app.navigationcomponent.databinding.FragmentDetailFeedbackBinding
 
 /**
  * A simple [Fragment] subclass.
  */
-class Main3Fragment : Fragment() {
+class DetailFeedbackFragment : Fragment() {
 
-    var _binding: FragmentMain3Binding? = null
-    val binding get() = _binding!!
+    private var _binding: FragmentDetailFeedbackBinding? = null
+    private val binding get() = _binding!!
+    private val args: DetailFeedbackFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentMain3Binding.inflate(inflater, container, false)
-        val view = binding.root
-        // Inflate the layout for this fragment
-        return view
+        _binding = FragmentDetailFeedbackBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -33,8 +32,8 @@ class Main3Fragment : Fragment() {
     }
 
     private fun initializeViews(){
-        binding.textActivityName.text = activity!!::class.java.simpleName
-        binding.textFragmentName.text = this::class.java.simpleName
+        binding.textActivityName.text = "Name: "+args.userName
+        binding.textFragmentName.text = "Age: "+ args.userAge.toString()
 
         binding.buttonBack.setOnClickListener {
             if (!findNavController().popBackStack()){
@@ -43,13 +42,12 @@ class Main3Fragment : Fragment() {
         }
 
         binding.buttonDone.setOnClickListener {
-            activity?.let {
-                val intent = Intent(it, DetailActivity::class.java)
-                it.startActivity(intent)
-                it.finish()
-            }
-
+            val action = DetailFeedbackFragmentDirections.actionDetailFeedbackFragmentToDetailHomeFragment()
+            findNavController().navigate(action)
         }
+
+        binding.headerMain.textTitle.text = "Feedback Title"
+        binding.headerMain.textSubtitle.text = "Feedback Subtitle"
     }
 
     override fun onDestroy() {
