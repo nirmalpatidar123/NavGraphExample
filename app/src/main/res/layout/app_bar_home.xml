@@ -29,7 +29,10 @@
                     android:id="@+id/text_title"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintRight_toLeftOf="@+id/drawer_icon"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"/>
 
