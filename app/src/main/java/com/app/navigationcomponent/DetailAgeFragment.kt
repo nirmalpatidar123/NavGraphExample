@@ -38,8 +38,9 @@ class DetailAgeFragment : Fragment() {
             findNavController().navigate(action)
         }
 
-        binding.headerMain.textTitle.text = "Age Title"
-        binding.headerMain.textSubtitle.text = "Age SubTitle"
+        binding.appBarHome.textTitle.text = "Age Title"
+        binding.appBarHome.textSubTitle.text = "Age SubTitle"
+        binding.appBarHome.textSubTitle.visibility = View.VISIBLE
     }
 
     override fun onDestroy() {

@@ -1,8 +1,13 @@
 package com.app.navigationcomponent
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.ImageView
+import android.widget.LinearLayout
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.app.navigationcomponent.databinding.ActivityMainBinding
+
 
 class MainActivity : AppCompatActivity() {
 

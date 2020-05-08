@@ -17,4 +17,27 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="ToolBarDrawer">
+        <item name="android:layout_height">?attr/actionBarSize</item>
+    </style>
+
+    <style name="ToolBarCommon">
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="TextTitle">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="TextSubTitle">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="HeaderIcon">
+        <item name="android:scaleType">fitXY</item>
+        <item name="android:src">@drawable/logo</item>
+        <item name="android:layout_height">32dp</item>
+        <item name="android:layout_width">32dp</item>
+    </style>
+
 </resources>

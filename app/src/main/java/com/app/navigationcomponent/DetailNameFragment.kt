@@ -40,8 +40,8 @@ class DetailNameFragment : Fragment() {
             }
         }
 
-        binding.headerMain.textTitle.text = "Name Title"
-        binding.headerMain.textSubtitle.text = "Name SubTitle"
+        binding.appBarHome.textTitle.text = "Name Title"
+        binding.appBarHome.textSubTitle.text = "Name SubTitle"
     }
 
     override fun onDestroy() {

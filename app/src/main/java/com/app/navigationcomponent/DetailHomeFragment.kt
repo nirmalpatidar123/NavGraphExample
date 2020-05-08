@@ -6,7 +6,9 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
+import androidx.core.widget.ImageViewCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.fragment.findNavController
 import com.app.navigationcomponent.databinding.FragmentDetailHomeBinding
@@ -49,6 +51,9 @@ class DetailHomeFragment : Fragment(), NavigationView.OnNavigationItemSelectedLi
 
         binding.textActivityName.text = activity!!::class.java.simpleName
         binding.textFragmentName.text = this::class.java.simpleName
+
+        binding.appBarHome.textSubTitle.visibility = View.GONE
+        binding.appBarHome.drawerIcon.setImageDrawable(ContextCompat.getDrawable(context!!, R.drawable.ic_drawer))
     }
 
     override fun onDestroy() {
