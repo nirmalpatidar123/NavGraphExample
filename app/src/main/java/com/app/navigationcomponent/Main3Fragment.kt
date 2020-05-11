@@ -46,6 +46,8 @@ class Main3Fragment : Fragment() {
             activity?.let {
                 val intent = Intent(it, DetailActivity::class.java)
                 it.startActivity(intent)
+                val sharedPrefHelper = SharedPrefHelper(it)
+                sharedPrefHelper.setUserLoggedInState(true)
                 it.finish()
             }
 
