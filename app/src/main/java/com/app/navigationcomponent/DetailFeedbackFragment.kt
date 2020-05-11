@@ -46,9 +46,9 @@ class DetailFeedbackFragment : Fragment() {
             findNavController().navigate(action)
         }
 
-        binding.appBarHome.textTitle.text = "Feedback Title"
-        binding.appBarHome.textSubTitle.text = "Feedback Subtitle"
-        binding.appBarHome.textSubTitle.visibility = View.VISIBLE
+        binding.headerCL.textTitle.text = "Feedback Title"
+        binding.headerCL.textSubTitle.text = "Feedback Subtitle"
+        binding.headerCL.textSubTitle.visibility = View.VISIBLE
     }
 
     override fun onDestroy() {

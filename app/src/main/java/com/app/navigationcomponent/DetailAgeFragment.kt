@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
 import com.app.navigationcomponent.databinding.FragmentDetailAgeBinding
 
@@ -38,9 +39,11 @@ class DetailAgeFragment : Fragment() {
             findNavController().navigate(action)
         }
 
-        binding.appBarHome.textTitle.text = "Age Title"
-        binding.appBarHome.textSubTitle.text = "Age SubTitle"
-        binding.appBarHome.textSubTitle.visibility = View.VISIBLE
+        binding.headerCL.headerCL.setBackgroundColor(ContextCompat.getColor(requireContext(), android.R.color.holo_blue_dark))
+
+        binding.headerCL.textTitle.text = "Age Title"
+        binding.headerCL.textSubTitle.text = "Age SubTitle"
+        binding.headerCL.textSubTitle.visibility = View.VISIBLE
     }
 
     override fun onDestroy() {

@@ -9,14 +9,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.app.navigationcomponent.databinding.FragmentDetailHomeBinding
 import com.google.android.material.navigation.NavigationView
-import kotlinx.android.synthetic.main.app_bar_home.view.*
+import kotlinx.android.synthetic.main.header.view.*
 
 
 /**
@@ -35,7 +34,7 @@ class DetailHomeFragment : Fragment(), NavigationView.OnNavigationItemSelectedLi
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentDetailHomeBinding.inflate(inflater, container, false)
-        (activity as? AppCompatActivity)?.setSupportActionBar(binding.appBarHome.toolbarHome)
+        //(activity as? AppCompatActivity)?.setSupportActionBar(binding.appBarHome.toolbarHome)
         val view = binding.root
         return view
     }
@@ -46,18 +45,18 @@ class DetailHomeFragment : Fragment(), NavigationView.OnNavigationItemSelectedLi
     }
 
     private fun initializeViews(){
-        binding.appBarHome.toolbarHome.drawer_icon.setOnClickListener {
+        binding.headerCL.drawerIcon.setOnClickListener {
             binding.drawerLayout.openDrawer(GravityCompat.END)
         }
         binding.navView.setNavigationItemSelectedListener(this)
 
-        binding.appBarHome.toolbarHome.text_title.text = "Home"
+        binding.headerCL.textTitle.text = "Home"
 
         binding.textActivityName.text = activity!!::class.java.simpleName
         binding.textFragmentName.text = this::class.java.simpleName
 
-        binding.appBarHome.textSubTitle.visibility = View.GONE
-        binding.appBarHome.drawerIcon.setImageDrawable(ContextCompat.getDrawable(context!!, R.drawable.ic_drawer))
+        binding.headerCL.textSubTitle.visibility = View.GONE
+        binding.headerCL.drawerIcon.setImageDrawable(ContextCompat.getDrawable(context!!, R.drawable.ic_drawer))
     }
 
     override fun onDestroy() {
