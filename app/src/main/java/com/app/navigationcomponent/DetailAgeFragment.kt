@@ -34,7 +34,9 @@ class DetailAgeFragment : Fragment() {
         binding.textActivityName.text = activity!!::class.java.simpleName
         binding.textFragmentName.text = this::class.java.simpleName
 
-        binding.buttonNext.setOnClickListener {
+        binding.footer.buttonPrevious.visibility = View.GONE
+        
+        binding.footer.buttonNext.setOnClickListener {
             val action = DetailAgeFragmentDirections.actionDetailAgeFragmentToDetailFeedbackFragment("Rahul", 22)
             findNavController().navigate(action)
         }

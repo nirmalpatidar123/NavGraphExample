@@ -34,7 +34,10 @@ class DetailNameFragment : Fragment() {
         binding.textActivityName.text = activity!!::class.java.simpleName
         binding.textFragmentName.text = this::class.java.simpleName
 
-        binding.buttonDone.setOnClickListener {
+        binding.footer.buttonPrevious.visibility = View.GONE
+        binding.footer.buttonNext.setText(R.string.done)
+
+        binding.footer.buttonNext.setOnClickListener {
             if (!findNavController().popBackStack()){
                 activity?.finish()
             }

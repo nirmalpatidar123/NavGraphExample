@@ -4,20 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".DetailNameFragment">
-
-    <include
-        android:id="@+id/headerCL"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        layout="@layout/header"/>
+    tools:context=".MainFirstTimeFragment"
+    android:background="@android:color/holo_purple">
 
     <TextView
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/text_fragment_name"
-        app:layout_constraintTop_toBottomOf="@+id/headerCL"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -37,13 +31,16 @@
         android:text="Fragment Name"/>
 
 
-    <include layout="@layout/footer"
+    <include
         android:id="@+id/footer"
-        android:layout_height="wrap_content"
+        layout="@layout/footer"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

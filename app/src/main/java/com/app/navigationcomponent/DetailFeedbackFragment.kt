@@ -35,13 +35,15 @@ class DetailFeedbackFragment : Fragment() {
         binding.textActivityName.text = "Name: "+args.userName
         binding.textFragmentName.text = "Age: "+ args.userAge.toString()
 
-        binding.buttonBack.setOnClickListener {
+        binding.footer.buttonNext.setText(R.string.done)
+
+        binding.footer.buttonPrevious.setOnClickListener {
             if (!findNavController().popBackStack()){
                 activity?.finish()
             }
         }
 
-        binding.buttonDone.setOnClickListener {
+        binding.footer.buttonNext.setOnClickListener {
             val action = DetailFeedbackFragmentDirections.actionDetailFeedbackFragmentToDetailHomeFragment()
             findNavController().navigate(action)
         }

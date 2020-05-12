@@ -6,34 +6,26 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
-import com.app.navigationcomponent.databinding.FragmentMain1Binding
+import com.app.navigationcomponent.databinding.FragmentMainFirstTimeBinding
 import java.lang.ClassCastException
 
 /**
  * A simple [Fragment] subclass.
  */
-class Main1Fragment : Fragment() {
+class MainFirstTimeFragment : Fragment() {
 
     private lateinit var headerListener: HeaderListener
 
-
-    private var _binding: FragmentMain1Binding? = null
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
-
+    var _binding: FragmentMainFirstTimeBinding? = null
+    val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentMain1Binding.inflate(inflater, container, false)
-        val view = binding.root
-        // Inflate the layout for this fragment
-        return view
+        _binding = FragmentMainFirstTimeBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -50,17 +42,17 @@ class Main1Fragment : Fragment() {
         }
     }
 
+
     private fun initializeViews(){
 
-        headerListener.setTitle("Title "+ this::class.java.simpleName)
-        headerListener.isSubTitleVisible(true)
-        headerListener.setSubTitle("Subtitle "+ this::class.java.simpleName)
+        headerListener.setTitle("Welcome "+ this::class.java.simpleName)
+        headerListener.isSubTitleVisible(false)
 
-        binding.footer.buttonPrevious.visibility= View.GONE
+        binding.footer.buttonPrevious.visibility = View.GONE
         binding.footer.buttonNext.setText(R.string.next)
         binding.footer.buttonNext.setOnClickListener {
-            val action = Main1FragmentDirections.actionMain1FragmentToMain2Fragment()
-            findNavController().navigate(action)
+            userFirstTimeExperienceCompleted()
+            navigateToNextScreen()
         }
         binding.textActivityName.text = activity!!::class.java.simpleName
         binding.textFragmentName.text = this::class.java.simpleName
@@ -69,6 +61,18 @@ class Main1Fragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+
+    private fun userFirstTimeExperienceCompleted(){
+        activity?.let {
+            val sharedPrefHelper = SharedPrefHelper(it)
+            sharedPrefHelper.setUserExperience(true)
+        }
+    }
+
+    fun navigateToNextScreen(){
+        val action = MainFirstTimeFragmentDirections.actionMainFirstTimeFragmentToMain1Fragment()
+        findNavController().navigate(action)
     }
 
 }

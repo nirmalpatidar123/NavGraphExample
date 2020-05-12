@@ -1,6 +1,5 @@
 package com.app.navigationcomponent
 
-import android.app.Activity
 import android.content.Context
 import android.content.SharedPreferences
 
@@ -9,6 +8,7 @@ class SharedPrefHelper(context: Context) {
 
     private val PREF_NAME = "MY_PREF"
     private val isUserLoggedIn:String = "User Logged In"
+    private val userExperience: String = "User Experience"
     var mPref: SharedPreferences
 
     init {
@@ -31,6 +31,14 @@ class SharedPrefHelper(context: Context) {
 
     fun setUserLoggedInState(isUserLoggerIn: Boolean){
         setBooleanValue(isUserLoggedIn, isUserLoggerIn)
+    }
+
+    fun setUserExperience(isRegularExperience: Boolean){
+        setBooleanValue(userExperience, isRegularExperience)
+    }
+
+    fun getUserExperience():Boolean{
+        return getBooleanValue(userExperience)
     }
 
 

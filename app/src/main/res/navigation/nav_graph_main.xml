@@ -3,7 +3,34 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/main1Fragment">
+    app:startDestination="@id/mainFragment">
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.app.navigationcomponent.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_main1Fragment"
+            app:destination="@id/main1Fragment"
+            app:popUpTo="@+id/mainFragment"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_mainFragment_to_mainFirstTimeFragment"
+            app:destination="@id/mainFirstTimeFragment"
+            app:popUpTo="@+id/mainFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/mainFirstTimeFragment"
+        android:name="com.app.navigationcomponent.MainFirstTimeFragment"
+        android:label="fragment_main_first_time"
+        tools:layout="@layout/fragment_main_first_time" >
+        <action
+            android:id="@+id/action_mainFirstTimeFragment_to_main1Fragment"
+            app:destination="@id/main1Fragment"
+            app:popUpTo="@+id/mainFirstTimeFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
     <fragment
         android:id="@+id/main1Fragment"
         android:name="com.app.navigationcomponent.Main1Fragment"
@@ -27,4 +54,5 @@
         android:name="com.app.navigationcomponent.Main3Fragment"
         android:label="fragment_main3"
         tools:layout="@layout/fragment_main3" />
+
 </navigation>
