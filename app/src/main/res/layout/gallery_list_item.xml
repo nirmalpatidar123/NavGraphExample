@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable name="galleryFile" type="com.example.mygallery.model.GalleryFile" />
+        <variable name="galleryItemClickListener" type="com.example.mygallery.interfaces.GalleryItemClickListener" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:onClick="@{()-> galleryItemClickListener.onGalleryItemClicked(galleryFile)}">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/ic_launcher_background"
+            android:src="@drawable/ic_launcher_foreground"
+            app:setUriToImageView="@{galleryFile}"/>
+
+        <View
+            android:id="@+id/videoIcon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:layout_constraintLeft_toLeftOf="@+id/image"
+            app:layout_constraintRight_toRightOf="@+id/image"
+            app:layout_constraintTop_toTopOf="@+id/image"
+            app:layout_constraintBottom_toBottomOf="@+id/image"
+            app:setVideoIconVisibility="@{galleryFile.mediaType}"
+            android:background="@android:drawable/ic_media_play"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".fragment.GalleryFragment">
+
+    <data>
+        <variable name="adapter" type="com.example.mygallery.adapter.GalleryAdapter" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/galleryRV"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:adapter="@{adapter}"
+            app:spanCount="3"
+            android:verticalSpacing="5dp"
+            android:horizontalSpacing="5dp"
+            tools:listitem="@layout/gallery_list_item"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"/>
+
+    </FrameLayout>
+
+</layout>
