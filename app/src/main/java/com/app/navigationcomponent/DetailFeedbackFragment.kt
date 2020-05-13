@@ -44,7 +44,10 @@ class DetailFeedbackFragment : Fragment() {
         }
 
         binding.footer.buttonNext.setOnClickListener {
-            val action = DetailFeedbackFragmentDirections.actionDetailFeedbackFragmentToDetailHomeFragment()
+            /*val action = DetailFeedbackFragmentDirections.actionDetailFeedbackFragmentToDetailHomeFragment()
+            findNavController().navigate(action)*/
+
+            val action = DetailFeedbackFragmentDirections.actionDetailFeedbackFragmentToMyDialogFragment()
             findNavController().navigate(action)
         }
 

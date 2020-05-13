@@ -53,6 +53,14 @@
             android:name="userAge"
             app:argType="integer"
             android:defaultValue="0" />
+        <action
+            android:id="@+id/action_detailFeedbackFragment_to_myDialogFragment"
+            app:destination="@id/myDialogFragment" />
     </fragment>
+    <dialog
+        android:id="@+id/myDialogFragment"
+        android:name="com.app.navigationcomponent.MyDialogFragment"
+        android:label="fragment_my_dialog"
+        tools:layout="@layout/fragment_my_dialog" />
 
 </navigation>
