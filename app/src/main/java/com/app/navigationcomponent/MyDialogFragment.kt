@@ -60,55 +60,22 @@ class MyDialogFragment : DialogFragment() {
     }
 
     private fun initializeView() {
-        binding.bottom2.bottom2.visibility = View.GONE
         binding.footer.buttonPrevious.visibility = View.GONE
 
         scene1 = Scene(binding.sceneRoot, binding.sceneRoot.container)
         scene2 = Scene.getSceneForLayout(binding.sceneRoot, R.layout.layout_scene_2, requireActivity())
 
         binding.footer.buttonNext.setOnClickListener {
-            if (true){
-                binding.footer.buttonPrevious.visibility = View.VISIBLE
-                binding.footer.buttonNext.visibility = View.GONE
-                TransitionManager.go(scene2)
-            }else{
-                //old method don't use it
-                showBottom2View()
-            }
-
-
+            binding.footer.buttonPrevious.visibility = View.VISIBLE
+            binding.footer.buttonNext.visibility = View.GONE
+            TransitionManager.go(scene2)
         }
 
         binding.footer.buttonPrevious.setOnClickListener {
-            if (true){
-                binding.footer.buttonPrevious.visibility = View.GONE
-                binding.footer.buttonNext.visibility = View.VISIBLE
-                TransitionManager.go(scene1)
-            }else{
-                //old method don't use it
-                showBottom1View()
-            }
+            binding.footer.buttonPrevious.visibility = View.GONE
+            binding.footer.buttonNext.visibility = View.VISIBLE
+            TransitionManager.go(scene1)
         }
-    }
-
-    private fun showBottom1View() {
-        binding.footer.buttonPrevious.visibility = View.GONE
-        binding.footer.buttonNext.visibility = View.VISIBLE
-        binding.bottom1.bottom1.visibility = View.VISIBLE
-        binding.bottom2.bottom2.startAnimation(getInAnimation2(binding.bottom2.bottom2))
-        binding.bottom1.bottom1.startAnimation(getInAnimation1(binding.bottom1.bottom1))
-        binding.bottom2.bottom2.visibility = View.GONE
-
-
-    }
-
-    private fun showBottom2View() {
-        binding.footer.buttonPrevious.visibility = View.VISIBLE
-        binding.footer.buttonNext.visibility = View.GONE
-        binding.bottom2.bottom2.visibility = View.VISIBLE
-        binding.bottom1.bottom1.startAnimation(getOutAnimation1(binding.bottom1.bottom1))
-        binding.bottom2.bottom2.startAnimation(getOutAnimation2(binding.bottom2.bottom2))
-        binding.bottom1.bottom1.visibility = View.GONE
     }
 
     override fun onDestroy() {
@@ -116,64 +83,8 @@ class MyDialogFragment : DialogFragment() {
         _binding = null
     }
 
-    /*
-    * old method don't use it
-    * */
-    private fun getInAnimation2(view: View): TranslateAnimation {
-        val animate = TranslateAnimation(
-            view.width.toFloat(),
-            0F,
-            0F,
-            0F
-        )
-        animate.duration = 500
-        animate.fillAfter = true
-        return animate
-    }
 
-    /*
-    * old method don't use it
-    * */
-    private fun getOutAnimation2(view: View): TranslateAnimation {
-        val animate = TranslateAnimation(
-            0F,
-            view.width.toFloat(),
-            0F,
-            0F
-        )
-        animate.duration = 500
-        animate.fillAfter = true
-        return animate
-    }
 
-    /*
-    * old method don't use it
-    * */
-    private fun getInAnimation1(view: View): TranslateAnimation {
-        val animate = TranslateAnimation(
-            0F,
-            -view.width.toFloat(),
-            0F,
-            0F
-        )
-        animate.duration = 500
-        animate.fillAfter = true
-        return animate
-    }
 
-    /*
-    * old method don't use it
-    * */
-    private fun getOutAnimation1(view: View): TranslateAnimation {
-        val animate = TranslateAnimation(
-            -view.width.toFloat(),
-            0F,
-            0F,
-            0F
-        )
-        animate.duration = 500
-        animate.fillAfter = true
-        return animate
-    }
 
 }
