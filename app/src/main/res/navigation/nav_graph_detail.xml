@@ -61,6 +61,12 @@
         android:id="@+id/myDialogFragment"
         android:name="com.app.navigationcomponent.MyDialogFragment"
         android:label="fragment_my_dialog"
-        tools:layout="@layout/fragment_my_dialog" />
+        tools:layout="@layout/fragment_my_dialog" >
+        <action
+            android:id="@+id/action_myDialogFragment_to_detailHomeFragment"
+            app:destination="@id/detailHomeFragment"
+            app:popUpTo="@+id/detailHomeFragment"
+            app:popUpToInclusive="true"/>
+    </dialog>
 
 </navigation>

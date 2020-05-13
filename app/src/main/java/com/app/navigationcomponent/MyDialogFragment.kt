@@ -8,9 +8,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
-import android.view.animation.TranslateAnimation
+import android.widget.Button
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.transition.Scene
 import androidx.transition.TransitionManager
 import com.app.navigationcomponent.databinding.FragmentMyDialogBinding
@@ -60,28 +61,36 @@ class MyDialogFragment : DialogFragment() {
     }
 
     private fun initializeView() {
-        binding.footer.buttonPrevious.visibility = View.GONE
-
         scene1 = Scene(binding.sceneRoot, binding.sceneRoot.container)
         scene2 = Scene.getSceneForLayout(binding.sceneRoot, R.layout.layout_scene_2, requireActivity())
-
-        binding.footer.buttonNext.setOnClickListener {
-            binding.footer.buttonPrevious.visibility = View.VISIBLE
-            binding.footer.buttonNext.visibility = View.GONE
-            TransitionManager.go(scene2)
-        }
-
-        binding.footer.buttonPrevious.setOnClickListener {
-            binding.footer.buttonPrevious.visibility = View.GONE
-            binding.footer.buttonNext.visibility = View.VISIBLE
-            TransitionManager.go(scene1)
-        }
+        setScene1()
     }
 
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
     }
+
+    fun setScene1(){
+        TransitionManager.go(scene1)
+        scene1.sceneRoot.findViewById<Button>(R.id.button_previous).visibility = View.GONE
+        scene1.sceneRoot.findViewById<Button>(R.id.button_next).setOnClickListener {
+            setScene2()
+        }
+    }
+
+    fun setScene2(){
+        TransitionManager.go(scene2)
+        scene2.sceneRoot.findViewById<Button>(R.id.button_next).setText(R.string.done)
+        scene2.sceneRoot.findViewById<Button>(R.id.button_previous).setOnClickListener {
+            setScene1()
+        }
+        scene2.sceneRoot.findViewById<Button>(R.id.button_next).setOnClickListener {
+            val action = MyDialogFragmentDirections.actionMyDialogFragmentToDetailHomeFragment()
+            findNavController().navigate(action)
+        }
+    }
+
 
 
 
