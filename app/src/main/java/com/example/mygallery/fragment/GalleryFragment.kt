@@ -15,10 +15,12 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.navigation.fragment.findNavController
 import com.example.mygallery.adapter.GalleryAdapter
 import com.example.mygallery.database.getDatabase
 import com.example.mygallery.databinding.FragmentGalleryBinding
+import com.example.mygallery.interfaces.GalleryItemClickListener
+import com.example.mygallery.model.GalleryFile
 import com.example.mygallery.repository.GalleryRepository
 import com.example.mygallery.ui.SpacesItemDecoration
 import com.example.mygallery.viewmodel.GalleryViewModel
@@ -28,7 +30,7 @@ import com.example.mygallery.viewmodel.GalleryViewModelFactory
 /**
  * A simple [Fragment] subclass.
  */
-class GalleryFragment : Fragment() {
+class GalleryFragment : Fragment(), GalleryItemClickListener {
 
     private var _binding : FragmentGalleryBinding? = null
     private val binding get() = _binding!!
@@ -60,9 +62,9 @@ class GalleryFragment : Fragment() {
     }
 
     private fun setGalleryListAdapter(){
-        val adapter = GalleryAdapter(requireContext())
+        val adapter = GalleryAdapter(requireContext(), this as GalleryItemClickListener)
         binding.adapter = adapter
-        binding.galleryRV.addItemDecoration(SpacesItemDecoration(3, 10, true))
+        binding.galleryRV.addItemDecoration(SpacesItemDecoration(2, 10, true))
 
         viewModel.galleryFileList.observe(viewLifecycleOwner, Observer { list->
             if (list!=null){
@@ -123,6 +125,11 @@ class GalleryFragment : Fragment() {
             }
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+    }
+
+    override fun onGalleryItemClicked(galleryFile: GalleryFile) {
+        val action = GalleryFragmentDirections.actionGalleryFragmentToDetailFragment(galleryFile)
+        findNavController().navigate(action)
     }
 
 }

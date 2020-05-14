@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:adapter="@{adapter}"
-            app:spanCount="3"
+            app:spanCount="2"
             android:verticalSpacing="5dp"
             android:horizontalSpacing="5dp"
             tools:listitem="@layout/gallery_list_item"

@@ -27,7 +27,12 @@ class GalleryRepository(val context: Context, val db: GalleryDatabase) {
             MediaStore.Files.FileColumns.DATE_ADDED,
             MediaStore.Files.FileColumns.MEDIA_TYPE,
             MediaStore.Files.FileColumns.MIME_TYPE,
-            MediaStore.Files.FileColumns.TITLE
+            MediaStore.Files.FileColumns.TITLE,
+            MediaStore.Files.FileColumns.DURATION,
+            MediaStore.Files.FileColumns.SIZE,
+            MediaStore.Files.FileColumns.WIDTH,
+            MediaStore.Files.FileColumns.HEIGHT,
+            MediaStore.Files.FileColumns.ORIENTATION
         )
 
         val query = ContentResolverCompat.query(context.contentResolver, MediaStore.Files.getContentUri("external"),
@@ -41,12 +46,23 @@ class GalleryRepository(val context: Context, val db: GalleryDatabase) {
             val mimeTypeColumn = cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.MIME_TYPE)
             val titleColumn = cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.TITLE)
 
+            val durationColumn = cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DURATION)
+            val sizeColumn = cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.SIZE)
+            val widthColumn = cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.WIDTH)
+            val heightColumn = cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.HEIGHT)
+            val orientationColumn = cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.ORIENTATION)
+
             while (cursor.moveToNext()){
                 val fileId = cursor.getLong(idColumn)
                 val dateAdded = cursor.getLong(dateAddedColumn)
                 val mediaType = cursor.getInt(mediaTypeColumn)
                 val mimeType = cursor.getString(mimeTypeColumn)
                 val title = cursor.getString(titleColumn)
+                val duration = cursor.getLong(durationColumn)
+                val size = cursor.getLong(sizeColumn)
+                val width = cursor.getLong(widthColumn)
+                val height = cursor.getLong(heightColumn)
+                val orientation = cursor.getInt(orientationColumn)
 
 
                 val galleryFile = GalleryFile(
@@ -54,7 +70,8 @@ class GalleryRepository(val context: Context, val db: GalleryDatabase) {
                     title,
                     mediaType,
                     mimeType,
-                    dateAdded
+                    dateAdded,
+                    duration, size, width, height, orientation
                 )
                 Log.e("gallery data: ", galleryFile.toString())
                 db.galleryFileDao().insert(galleryFile)
